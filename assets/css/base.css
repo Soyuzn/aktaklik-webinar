@@ -13,6 +13,9 @@ button{cursor:pointer}
 .container{width:min(1200px,100% - 48px);margin-inline:auto}
 .blend{mix-blend-mode:multiply}
 
+/* gradient hijau lembut di hero (dua versi) */
+.hero{background:linear-gradient(#d9eed6,#eef7ec 40%,#fff 85%)}
+
 /* nav */
 .nav{height:80px;border-bottom:1px solid #eef2ed;background:#fff;display:flex;align-items:center}
 .nav .container{display:flex;align-items:center;justify-content:space-between;gap:16px}

@@ -1,4 +1,4 @@
-.hero{background:linear-gradient(#eaf5e9,#fff 80%);padding:36px 0 64px;text-align:center}
+.hero{padding:36px 0 64px;text-align:center}
 .hero .container{display:flex;flex-direction:column;align-items:center;gap:20px}
 .tag{background:var(--yellow);color:var(--deep);border-radius:99px;padding:10px 22px;font-size:17px;font-weight:800;letter-spacing:.8px}
 h1{font-size:min(96px,9.4vw);font-weight:800;text-transform:uppercase;line-height:.98;letter-spacing:-1.5px;text-wrap:balance}
