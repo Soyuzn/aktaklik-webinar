@@ -220,6 +220,12 @@
     } else if (el.name) {
       data[el.name] = el.value;
     }
+    const field = el.closest('.invalid');
+    if (field) {
+      delete errors[el.dataset.person !== undefined ? 'people' : el.name];
+      field.classList.remove('invalid');
+      el.removeAttribute('aria-invalid');
+    }
   });
 
   root.addEventListener('change', (ev) => {
