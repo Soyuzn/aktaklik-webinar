@@ -8,7 +8,7 @@
 .progress div{display:flex;gap:6px}
 .progress i{height:4px;flex:1;border-radius:4px;background:#e3e9e2}
 .progress i.on{background:var(--primary)}
-.stepper{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted)}
+.stepper{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap}
 .stepper li{display:flex;align-items:center;gap:8px}
 .stepper li+li::before{content:'';width:24px;height:2px;background:#dde5dc}
 .stepper li.reached::before{background:var(--primary)}
