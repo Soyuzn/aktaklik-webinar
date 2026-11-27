@@ -80,7 +80,7 @@
 
 @media (max-width:600px){
   .overlay{padding:0}
-  .dialog,.dialog.wide{width:100%;min-height:100%;margin:0;border-radius:0;padding:16px 20px calc(24px + env(safe-area-inset-bottom));box-shadow:none}
+  .dialog,.dialog.wide{width:100%;min-height:100%;align-self:flex-start;margin:0;border-radius:0;padding:16px 20px calc(24px + env(safe-area-inset-bottom));box-shadow:none}
   .title{font-size:23px}
   [data-version="bold"] .title,[data-version="bold"] .success .title{font-size:27px}
   .stepper{gap:6px;font-size:12px}
