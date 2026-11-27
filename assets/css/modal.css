@@ -47,7 +47,12 @@
 .textbtn{display:block;margin:12px auto 0;border:0;background:none;font-size:14px;font-weight:500;color:var(--muted);padding:6px}
 .privacy{text-align:center;font-size:13px;color:var(--muted);margin-top:14px}
 .success{text-align:center}
-.success>img{width:150px;height:150px;margin:0 auto 8px}
+.success>img{width:112px;height:112px;margin:0 auto 2px}
+.success .pill{margin:0 0 10px}
+.success .lead{max-width:360px;margin:0 auto 18px;font-size:15px;color:var(--body)}
+.success .btn-main svg{width:22px;height:22px;flex:none}
+.success .wa-note{margin:10px auto 0;max-width:320px;font-size:12.5px;color:var(--muted)}
+.success .btn-line{margin-top:16px;min-height:48px;font-size:15px}
 .success .close{position:absolute;right:16px;top:16px}
 .success .title{margin-top:0}
 .summary{background:#f5faf4;border:1px solid #e3eee1;border-radius:14px;padding:8px 20px;margin-bottom:16px;text-align:left}
@@ -63,13 +68,15 @@
   from{transform:scale(1);box-shadow:0 0 18px 1px rgba(58,162,56,.4)}
   to{transform:scale(1.025);box-shadow:0 0 0 7px rgba(58,162,56,.18),0 0 38px 8px rgba(58,162,56,.5)}
 }
-[data-version="bold"] .success .title{font-size:34px}
+[data-version="bold"] .success .title{font-size:34px;margin-top:0}
 .next-list{background:#f5faf4;border:1px solid #e3eee1;border-radius:14px;padding:16px 20px;text-align:left;margin-bottom:12px}
 .next-list li{display:flex;gap:14px;align-items:center;padding:7px 0}
 .next-list i{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;font-style:normal;font-weight:800;font-size:17px}
 .next-list b{display:block;font-size:18px;font-weight:800}
 .next-list small{display:block;font-size:14px;font-weight:500;color:var(--body)}
-[data-version="bold"] .success .lead{margin-bottom:14px}
+[data-version="bold"] .success .lead{margin-bottom:14px;font-size:17px;color:var(--dark)}
+[data-version="bold"] .success .lead b{color:var(--green)}
+[data-version="bold"] .success .who{margin:0 0 6px;text-align:center}
 
 @media (max-width:600px){
   .overlay{padding:0}

@@ -88,24 +88,31 @@
     action: 'TEMPLATE', text: 'Webinar Aktaklik', dates: `${CFG.calendarStart}/${CFG.calendarEnd}`,
     details: 'Webinar online Aktaklik. Link dikirim ke WhatsApp dan email yang didaftarkan.', location: 'Online'
   });
-  const contactUrl = () => CFG.waNumber
-    ? `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent('Halo tim Aktaklik, saya sudah daftar webinar 5 Desember.')}`
-    : 'https://aktaklik.id';
+  // Pesan siap kirim ke tim. Nomor kosong = WhatsApp terbuka tanpa tujuan (pilih kontak sendiri).
+  const waMessage = () => [
+    'Halo tim Aktaklik, saya mau konfirmasi pendaftaran webinar 5 Desember 2026 (11.00 WIB).', '',
+    `Nama: ${data.name.trim()}`, `Kantor: ${data.office.trim()}`, `Peserta: ${totalPeople()} orang`, '',
+    'Mohon dikirimi link webinarnya ya. Terima kasih.'
+  ].join('\n');
+  const waUrl = () => `https://wa.me/${(CFG.waNumber || '').replace(/\D/g, '')}?text=${encodeURIComponent(waMessage())}`;
+  const waIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 9.5c.3 2.4 2.6 4.7 5 5l1.3-1.3-1.9-1-.8.8c-.9-.4-1.7-1.2-2.1-2.1l.8-.8-1-1.9z" fill="currentColor" stroke="none"/></svg>';
 
   const success = () => {
     const actions = `
-      <a class="btn-main" href="${calendarUrl()}" target="_blank" rel="noopener">${bold ? 'SIMPAN JADWAL →' : 'Simpan ke Google Calendar'}</a>
-      <a class="btn-line" href="${contactUrl()}" target="_blank" rel="noopener">Hubungi Tim Kami</a>
+      <a class="btn-main" href="${waUrl()}" target="_blank" rel="noopener">${waIcon}${bold ? 'KIRIM KE WHATSAPP' : 'Konfirmasi via WhatsApp'}</a>
+      <p class="hint wa-note">WhatsApp terbuka dengan pesan yang sudah kami tulis. Anda tinggal menekan kirim.</p>
+      <a class="btn-line" href="${calendarUrl()}" target="_blank" rel="noopener">${bold ? 'Simpan jadwal ke kalender' : 'Simpan ke Google Calendar'}</a>
       <button type="button" class="textbtn" data-close>Kembali ke halaman utama</button>`;
     const middle = bold ? `
-      <p class="lead"><b>Langkah berikutnya, cuma 3 ini:</b></p>
-      <ol class="next-list">${[['Cek WhatsApp dan email', 'Link webinar kami kirim ke sana.'], ['Simpan jadwalnya', 'Tekan tombol hijau di bawah.'], ['Hadir Sabtu, 5 Desember', 'Jam 11.00 WIB, online.']].map(([a, b], i) => `<li><i>${i + 1}</i><span><b>${a}</b><small>${b}</small></span></li>`).join('')}</ol>
-      <p class="hint" style="margin:0 0 10px">${esc(data.office)} · ${totalPeople()} peserta</p>` : `
-      <p class="lead">Sampai jumpa di webinar. Link akan kami kirim ke WhatsApp dan email yang Anda daftarkan.</p>
+      <p class="lead">Cuma <b>2 ketukan</b> supaya link webinar sampai ke Anda.</p>
+      <ol class="next-list">${[['Tekan tombol hijau', 'WhatsApp terbuka, pesannya sudah siap.'], ['Tekan kirim', 'Tim kami balas dengan link webinar.'], ['Hadir Sabtu, 5 Desember', 'Jam 11.00 WIB, online.']].map(([a, b], i) => `<li><i>${i + 1}</i><span><b>${a}</b><small>${b}</small></span></li>`).join('')}</ol>
+      <p class="hint who">${esc(data.office)} · ${totalPeople()} peserta</p>` : `
+      <p class="lead">Konfirmasi lewat WhatsApp untuk menerima link webinar. Pesannya sudah kami siapkan.</p>
       <dl class="summary">${[['Acara', 'Webinar Aktaklik'], ['Tanggal', 'Sabtu, 5 Desember 2026'], ['Waktu', '11.00 WIB · Online'], ['Kantor', data.office], ['Peserta', `${totalPeople()} orang`]].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
     return `<div class="success"><button type="button" class="close" data-close aria-label="Tutup">×</button>
-      <img class="blend" src="assets/img/icon-success.webp" alt="" width="150" height="150">
-      <h2 class="title" id="dialog-title" tabindex="-1">${bold ? 'ANDA SUDAH DAFTAR!' : 'Pendaftaran berhasil!'}</h2>${middle}${actions}</div>`;
+      <img class="blend" src="assets/img/icon-success.webp" alt="" width="112" height="112">
+      <p class="pill">LANGKAH TERAKHIR</p>
+      <h2 class="title" id="dialog-title" tabindex="-1">${bold ? 'SATU LANGKAH LAGI!' : 'Pendaftaran diterima'}</h2>${middle}${actions}</div>`;
   };
 
   const form = () => {
