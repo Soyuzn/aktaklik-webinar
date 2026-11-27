@@ -99,20 +99,20 @@
 
   const success = () => {
     const actions = `
-      <a class="btn-main" href="${waUrl()}" target="_blank" rel="noopener">${waIcon}${bold ? 'KIRIM KE WHATSAPP' : 'Konfirmasi via WhatsApp'}</a>
-      <p class="hint wa-note">WhatsApp terbuka dengan pesan yang sudah kami tulis. Anda tinggal menekan kirim.</p>
+      <a class="btn-main" href="${waUrl()}" target="_blank" rel="noopener">${waIcon}${bold ? 'KONFIRMASI SEKARANG' : 'Konfirmasi Pendaftaran'}</a>
+      <p class="hint wa-note">Anda akan diarahkan ke WhatsApp dengan pesan konfirmasi yang sudah terisi otomatis.</p>
       <a class="btn-line" href="${calendarUrl()}" target="_blank" rel="noopener">${bold ? 'Simpan jadwal ke kalender' : 'Simpan ke Google Calendar'}</a>
       <button type="button" class="textbtn" data-close>Kembali ke halaman utama</button>`;
     const middle = bold ? `
-      <p class="lead">Cuma <b>2 ketukan</b> supaya link webinar sampai ke Anda.</p>
-      <ol class="next-list">${[['Tekan tombol hijau', 'WhatsApp terbuka, pesannya sudah siap.'], ['Tekan kirim', 'Tim kami balas dengan link webinar.'], ['Hadir Sabtu, 5 Desember', 'Jam 11.00 WIB, online.']].map(([a, b], i) => `<li><i>${i + 1}</i><span><b>${a}</b><small>${b}</small></span></li>`).join('')}</ol>
+      <p class="lead">Konfirmasi dulu, supaya <b>link webinar</b> sampai ke Anda.</p>
+      <ol class="next-list">${[['Tekan tombol hijau', 'Pesan konfirmasi sudah terisi otomatis.'], ['Konfirmasi di WhatsApp', 'Tim kami balas dengan link webinar.'], ['Hadir Sabtu, 5 Desember', 'Jam 11.00 WIB, online.']].map(([a, b], i) => `<li><i>${i + 1}</i><span><b>${a}</b><small>${b}</small></span></li>`).join('')}</ol>
       <p class="hint who">${esc(data.office)} · ${totalPeople()} peserta</p>` : `
-      <p class="lead">Konfirmasi lewat WhatsApp untuk menerima link webinar. Pesannya sudah kami siapkan.</p>
+      <p class="lead">Konfirmasi pendaftaran Anda supaya kami bisa mengirim link webinar. Pesannya sudah kami siapkan.</p>
       <dl class="summary">${[['Acara', 'Webinar Aktaklik'], ['Tanggal', 'Sabtu, 5 Desember 2026'], ['Waktu', '11.00 WIB · Online'], ['Kantor', data.office], ['Peserta', `${totalPeople()} orang`]].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
     return `<div class="success"><button type="button" class="close" data-close aria-label="Tutup">×</button>
       <img class="blend" src="assets/img/icon-success.webp" alt="" width="112" height="112">
       <p class="pill">LANGKAH TERAKHIR</p>
-      <h2 class="title" id="dialog-title" tabindex="-1">${bold ? 'SATU LANGKAH LAGI!' : 'Pendaftaran diterima'}</h2>${middle}${actions}</div>`;
+      <h2 class="title" id="dialog-title" tabindex="-1">${bold ? 'SATU LANGKAH LAGI!' : 'Hampir selesai!'}</h2>${middle}${actions}</div>`;
   };
 
   const form = () => {
