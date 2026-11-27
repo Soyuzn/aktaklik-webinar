@@ -1,6 +1,5 @@
 (() => {
   const CFG = window.WEBINAR_CONFIG;
-  const bold = document.body.dataset.version === 'bold';
   const root = document.getElementById('modal-root');
 
   const ROLES = ['Notaris', 'PPAT', 'Notaris & PPAT', 'Staf kantor'];
@@ -11,14 +10,10 @@
     ['kendala', 'Kendala paling sering saat drafting', true, ['Salah input data klien', 'Waktu habis untuk input manual', 'Lupa dokumen pendukung', 'Lupa daftar dokumen dari klien', 'Due diligence / PMPJ', 'Lainnya']],
     ['minat', 'Apa yang paling ingin Anda lihat di webinar?', false, ['Baca data dari dokumen', 'Alur draft akta', 'Keamanan data', 'Tanya jawab langsung']]
   ];
-  const COPY = bold ? {
+  const COPY = {
     1: ['ISI NAMA ANDA', 'tulis kantor Anda dan siapa yang ikut.', 'LANJUT KE LANGKAH 2'],
     2: ['SIAPA YANG IKUT?', '4 pertanyaan singkat, lalu selesai.', 'LANJUT KE LANGKAH 3'],
     3: ['TINGGAL KLIK-KLIK', 'tekan tombol hijau, Anda terdaftar.', 'SELESAI, DAFTARKAN SAYA']
-  } : {
-    1: ['Daftar Webinar Aktaklik', 'Sabtu, 5 Desember 2026 · 11.00 WIB · Online', 'Lanjut'],
-    2: ['Kantor dan peserta', 'Supaya kami tahu siapa saja yang perlu dikirimi link.', 'Lanjut'],
-    3: ['Terakhir, 4 pertanyaan singkat', 'Supaya materi webinar sesuai dengan kebutuhan kantor Anda.', 'Kirim Pendaftaran']
   };
 
   const emptyPerson = () => ({ name: '', job: '' });
@@ -77,7 +72,6 @@
 
   const header = () => {
     const close = '<button type="button" class="close" data-close aria-label="Tutup">×</button>';
-    if (!bold) return `<div class="top"><div class="progress"><p>LANGKAH ${step} DARI 3</p><div>${[1, 2, 3].map((n) => `<i class="${n <= step ? 'on' : ''}"></i>`).join('')}</div></div>${close}</div>`;
     return `<div class="top"><ol class="stepper">${['Data Anda', 'Kantor', 'Selesai'].map((l, i) => {
       const n = i + 1;
       return `<li class="${n <= step ? 'reached' : ''} ${n === step ? 'now' : ''}" ${n === step ? 'aria-current="step"' : ''}><b>${n < step ? '✓' : n}</b><span>${l}</span></li>`;
@@ -99,27 +93,25 @@
 
   const success = () => {
     const actions = `
-      <a class="btn-main" href="${waUrl()}" target="_blank" rel="noopener">${waIcon}${bold ? 'KONFIRMASI SEKARANG' : 'Konfirmasi Pendaftaran'}</a>
+      <a class="btn-main" href="${waUrl()}" target="_blank" rel="noopener">${waIcon}KONFIRMASI SEKARANG</a>
       <p class="hint wa-note">Anda akan diarahkan ke WhatsApp dengan pesan konfirmasi yang sudah terisi otomatis.</p>
-      <a class="btn-line" href="${calendarUrl()}" target="_blank" rel="noopener">${bold ? 'Simpan jadwal ke kalender' : 'Simpan ke Google Calendar'}</a>
+      <a class="btn-line" href="${calendarUrl()}" target="_blank" rel="noopener">Simpan jadwal ke kalender</a>
       <button type="button" class="textbtn" data-close>Kembali ke halaman utama</button>`;
-    const middle = bold ? `
+    const middle = `
       <p class="lead">Konfirmasi dulu, supaya <b>link webinar</b> sampai ke Anda.</p>
       <ol class="next-list">${[['Tekan tombol hijau', 'Pesan konfirmasi sudah terisi otomatis.'], ['Konfirmasi di WhatsApp', 'Tim kami balas dengan link webinar.'], ['Hadir Sabtu, 5 Desember', 'Jam 11.00 WIB, online.']].map(([a, b], i) => `<li><i>${i + 1}</i><span><b>${a}</b><small>${b}</small></span></li>`).join('')}</ol>
-      <p class="hint who">${esc(data.office)} · ${totalPeople()} peserta</p>` : `
-      <p class="lead">Konfirmasi pendaftaran Anda supaya kami bisa mengirim link webinar. Pesannya sudah kami siapkan.</p>
-      <dl class="summary">${[['Acara', 'Webinar Aktaklik'], ['Tanggal', 'Sabtu, 5 Desember 2026'], ['Waktu', '11.00 WIB · Online'], ['Kantor', data.office], ['Peserta', `${totalPeople()} orang`]].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
+      <p class="hint who">${esc(data.office)} · ${totalPeople()} peserta</p>`;
     return `<div class="success"><button type="button" class="close" data-close aria-label="Tutup">×</button>
       <img class="blend" src="assets/img/icon-success.webp" alt="" width="112" height="112">
       <p class="pill">LANGKAH TERAKHIR</p>
-      <h2 class="title" id="dialog-title" tabindex="-1">${bold ? 'SATU LANGKAH LAGI!' : 'Hampir selesai!'}</h2>${middle}${actions}</div>`;
+      <h2 class="title" id="dialog-title" tabindex="-1">SATU LANGKAH LAGI!</h2>${middle}${actions}</div>`;
   };
 
   const form = () => {
     const [title, sub, button] = COPY[step];
     return `${header()}
       <h2 class="title" id="dialog-title" tabindex="-1">${title}</h2>
-      <p class="lead">${bold ? `<b>Setelah ini:</b> ${sub}` : sub}</p>
+      <p class="lead"><b>Setelah ini:</b> ${sub}</p>
       <form novalidate>${body[step]()}
         <button class="btn-main" type="submit">${button} <span aria-hidden="true">→</span></button>
       </form>

@@ -2,12 +2,7 @@
 
 Website pendaftaran webinar (contoh/dummy). HTML, CSS, dan JavaScript polos, tanpa proses build.
 
-| Halaman | Isi |
-| --- | --- |
-| `index.html` | Versi 1 · Klasik |
-| `bold.html` | Versi 2 · Bold |
-
-Top bar di bagian atas dipakai untuk pindah versi.
+Satu halaman: `index.html` (tampilan Bold). Versi Klasik dan top bar pindah versi sudah dihapus. Alamat lama `/bold` diarahkan ke `/`.
 
 ## Jalankan di komputer
 
@@ -24,7 +19,7 @@ Import repo ini, Framework Preset **Other**, tanpa build command. Atau jalankan 
 Semua di `assets/js/config.js`:
 
 - `endpoint`: **saat ini kosong, jadi data pendaftar tidak disimpan di mana pun.**
-- `waNumber`: nomor WhatsApp tim. Kosong berarti tombol "Hubungi Tim Kami" membuka aktaklik.id.
+- `waNumber`: nomor WhatsApp tim. Tombol "KONFIRMASI SEKARANG" di halaman sukses membuka WhatsApp ke nomor ini dengan pesan yang sudah terisi. Kosong berarti WhatsApp terbuka tanpa tujuan.
 - `calendarStart` / `calendarEnd`: durasi 1 jam masih asumsi.
 
 Hal lain:
@@ -32,6 +27,5 @@ Hal lain:
 - Cek ulang info acara: online, gratis, link via WhatsApp dan email.
 - Link di footer dan form newsletter belum tersambung.
 - Halaman diberi `noindex`; hapus tag-nya kalau ingin muncul di mesin pencari.
-- Kalau hanya satu versi yang dipakai, hapus `<div class="switcher">` dari halamannya.
 
 Desain: Figma "Aktaklik", page "Webinar · 5 Des".
