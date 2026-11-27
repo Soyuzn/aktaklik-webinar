@@ -33,7 +33,7 @@
 .chip{position:relative}
 .chip input{position:absolute;opacity:0;pointer-events:none}
 .chip span{display:block;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-size:14px;font-weight:500;cursor:pointer;background:#fff}
-.chip input:checked+span{background:var(--soft);border-color:var(--primary);color:var(--green);font-weight:600}
+.chip input:checked+span{background:var(--soft);border-color:var(--primary);color:var(--green)}
 .chip input:focus-visible+span{outline:3px solid var(--yellow);outline-offset:2px}
 .error{display:none;color:#b42318;font-size:12.5px;font-weight:600;margin-top:6px}
 .invalid .error{display:block}
